@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects"
+	x:Class="Sample.Views.MainPage" Title="ToDo Entry"
+	BackgroundColor="#F7F0E4">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style x:Key="BaseView" TargetType="View">
+				<Setter Property="ef:AddText.On" Value="true" />
+				<Setter Property="ef:AddText.Margin" Value="3" />
+				<Setter Property="ef:AddText.Padding" Value="2" />
+				<Setter Property="ef:AddText.BackgroundColor" Value="#A0F0F0E0" />
+				<Setter Property="ef:AddText.FontSize" Value="8" />
+			</Style>
+			<Style TargetType="Entry" BasedOn="{StaticResource BaseView}" />
+			<Style TargetType="Editor" BasedOn="{StaticResource BaseView}" />
+			<Style TargetType="DatePicker" BasedOn="{StaticResource BaseView}" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	
+	<StackLayout Padding="10">
+		<Label Text="Title" />
+		<Entry Text="{Binding Title.Value}" BackgroundColor="White" HeightRequest="40" ef:AddText.Text="{Binding TitleError.Value}" />
+
+		<Label Text="Description" />
+		<Editor Text="{Binding Description.Value}" BackgroundColor="White" HeightRequest="120" ef:AddText.Text="{Binding DescriptionError.Value}" />
+
+		<Label Text="Priority" />
+		<Entry Text="{Binding Priority.Value}" Placeholder="0-999" PlaceholderColor="Silver" BackgroundColor="White" HeightRequest="40" ef:AddText.Text="{Binding PriorityError.Value}" />
+		
+		<Label Text="Span" />
+		<DatePicker Date="{Binding DateFrom.Value}"  ef:AddText.Text="{Binding DateError.Value}" />
+		<DatePicker Date="{Binding DateTo.Value}" />
+
+		<Button Text="OK" Command="{Binding OKCommand}" />
+	</StackLayout>
+</ContentPage>
